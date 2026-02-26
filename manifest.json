@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Ask ChatGPT About This Page",
+  "version": "0.1.0",
+  "description": "Ask a question about the page you're viewing.",
+  "action": {
+    "default_title": "Ask ChatGPT",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html",
+  "permissions": ["activeTab", "scripting", "storage"],
+  "host_permissions": ["https://api.openai.com/*"],
+  "background": {
+    "service_worker": "service_worker.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
